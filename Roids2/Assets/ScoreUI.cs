@@ -21,9 +21,6 @@ public class ScoreUI : MonoBehaviour {
 		string livesLabel = "\nLIVES: " + globalObj.lives.ToString(); 
 		string levelLabel = "LEVEL: " + globalObj.level.ToString();
 		string label = levelLabel + scoreLabel + livesLabel; 
-		scoreText.text = label ; 
-		
-		globalObj.checkScreenBounds(); 
-		 
+		scoreText.text = label ; 		 
 	} 
 }

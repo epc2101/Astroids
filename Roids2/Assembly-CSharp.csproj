@@ -47,9 +47,13 @@
      <Compile Include="Assets\Astroid.cs" />
      <Compile Include="Assets\Bullet.cs" />
      <Compile Include="Assets\Global.cs" />
+     <Compile Include="Assets\PlayAgain.cs" />
      <Compile Include="Assets\ScoreUI.cs" />
      <Compile Include="Assets\Ship.cs" />
      <Compile Include="Assets\TitleScript.cs" />
+     <Compile Include="Assets\UFO.cs" />
+     <Compile Include="Assets\UfoBullet.cs" />
+     <Compile Include="Assets\VisibilityChangeScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
