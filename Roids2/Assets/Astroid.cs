@@ -48,7 +48,7 @@ public class Astroid : MonoBehaviour {
 		 { 
 			Ship ourShip = collider.gameObject.GetComponent< Ship >(); 
 			ourShip.Die(); 
-			g.score += pointValue; 
+			//g.score += pointValue; 
 			g.currNumAstr--; 
 			Destroy(gameObject); 
 		 } else if( collider.CompareTag("UFO")) 

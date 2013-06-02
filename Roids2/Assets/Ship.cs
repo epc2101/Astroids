@@ -29,23 +29,24 @@ public class Ship : MonoBehaviour {
 	// force thruster 
 	if( Input.GetAxisRaw("Vertical") > 0 ) 
 	{ 
+		forceVector = new Vector3(0.0f, 2.0f, 2.0f);  
 		gameObject.rigidbody.AddRelativeForce(forceVector); 
 	} 
 	if( Input.GetAxisRaw("Horizontal") > 0 ) 
 	{ 
 		rotation += rotationSpeed; 
-		Quaternion rot = Quaternion.Euler(new 
-		Vector3(0,rotation,0)); 
+		Quaternion rot = Quaternion.Euler(new Vector3(90, rotation, 0)); 
+		//Vector3 newRot = new Vector3(0,rotation,0); 
 		gameObject.rigidbody.MoveRotation(rot); 
-		//gameObject.transform.Rotate(0, 2.0f, 0.0f ); 
+		//gameObject.transform.Rotate(0.0f, 0.0f, 2.0f ); 
 	} 
 	else if( Input.GetAxisRaw("Horizontal") < 0 ) 
 	{ 
 		rotation -= rotationSpeed; 
-		Quaternion rot = Quaternion.Euler(new 
-		Vector3(0,rotation,0)); 
+		Quaternion rot = Quaternion.Euler(new Vector3(90, rotation, 0)); 
+		//Vector3 newRot = new Vector3(0,rotation,0); 
 		gameObject.rigidbody.MoveRotation(rot); 
-		//gameObject.transform.Rotate(0, -2.0f, 0.0f ); 
+		//gameObject.transform.Rotate( 0.0f, 0.0f,  -2.0f ); 
 	} 
  } 
 	
@@ -61,15 +62,17 @@ public class Ship : MonoBehaviour {
 				at the tip of where the ship is pointed. 
 				*/ 
 				Vector3 spawnPos = gameObject.transform.position; 
-				spawnPos.x += 1.5f * Mathf.Cos(rotation * Mathf.PI/180); 
-				spawnPos.z -= 1.5f * Mathf.Sin(rotation * Mathf.PI/180); 
+				//spawnPos.x += 1.0f * Mathf.Cos(rotation * Mathf.PI/180); 
+				//spawnPos.z += 1.0f * Mathf.Sin(rotation * Mathf.PI/180); 
 				// instantiate the Bullet 
-				GameObject obj = Instantiate(bullet, spawnPos, 
-				Quaternion.identity) as GameObject; 
+				GameObject obj = Instantiate(bullet, spawnPos, Quaternion.identity) as GameObject;
+			
 				// get the Bullet Script Component of the new Bullet instance 
 				Bullet b = obj.GetComponent<Bullet>(); 
+				Transform bulletTrans = b.transform; 
+				Physics.IgnoreCollision(bulletTrans.collider, collider);
 				// set the direction the Bullet will travel in 
-				Quaternion rot = Quaternion.Euler(new Vector3(0,rotation,0)); 
+				Quaternion rot = Quaternion.Euler(new Vector3(0,rotation-90,0)); 
 				b.heading = rot; 
 			} 
 	 }  

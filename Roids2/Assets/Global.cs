@@ -55,12 +55,22 @@ public class Global : MonoBehaviour {
 	
 	// Update is called once per frame 
 	void Update () { 
-		
 		//Check # of lives & end game
 		float deathPauseTime = 2.0f;
 		float timeAfterDeath = 0.0f; 
 		if (lives < 1 && timeAfterDeath < deathPauseTime) {
-			print ("Calling Play Again");
+			//Check if the user has a new high score
+			for (int i = 1; i < 5; i++) {
+				string scoreKey = "Score" + i.ToString(); 
+				string nameKey = "Name" + i.ToString(); 
+				int storedScore = PlayerPrefs.GetInt(scoreKey);
+				if (score > storedScore) {
+					print ("NEW HIGH SCORE!");
+					PlayerPrefs.SetInt(scoreKey, score); 
+					PlayerPrefs.SetString(nameKey, "ENTER YOUR NAME HERE"); 
+					break; 
+				}
+			}
 			Application.LoadLevel("PlayAgainScene"); 			
 		} else if (lives < 1) {
 			deathPauseTime += Time.deltaTime;	
